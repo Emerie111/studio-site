@@ -1,46 +1,316 @@
-:root{--paper:#ECEEEB;--ink:#131A2B;--stamp:#2B35D6;--slot:#DADED9;--rule:rgba(19,26,43,.22)}
-*{box-sizing:border-box;margin:0}
-html{background:var(--paper);color:var(--ink)}
-body{font:400 1.05rem/1.55 "Bricolage Grotesque",system-ui,sans-serif;padding:0 clamp(1rem,4vw,3rem)}
-a{color:inherit;text-underline-offset:.2em;text-decoration-thickness:1px}
-a:hover{color:var(--stamp)}
-:focus-visible{outline:2px solid var(--stamp);outline-offset:3px}
-.wrap{max-width:84rem;margin:0 auto}
-header{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:1.25rem 0;border-bottom:1px solid var(--rule)}
-.mark{font-weight:700;font-size:1.15rem;text-decoration:none}
-nav{display:flex;gap:1.5rem}
-h1,h2,.term{font-weight:600;font-variation-settings:"wdth" 80,"opsz" 96;letter-spacing:-.025em;line-height:.98}
-h1{font-size:clamp(2.6rem,7.4vw,6.4rem)}
-h2{font-size:clamp(2rem,4.6vw,3.6rem)}
-.hero{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(1rem,2vw,2rem);padding:clamp(2rem,6vw,5rem) 0}
-.hero h1{grid-column:1/9}
-.lede{grid-column:1/7;font-size:1.25rem;max-width:34rem;margin-top:1rem}
-.cta{grid-column:1/7;font-size:1.1rem}
-.hero .slot{grid-column:9/13;grid-row:1/4;animation:wipe 1.1s cubic-bezier(.7,0,.2,1) both}
-@keyframes wipe{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0)}}
-@media(prefers-reduced-motion:reduce){.hero .slot{animation:none}}
-.slot{position:relative;background:var(--slot);overflow:hidden;display:grid;place-items:center}
-.slot::after{content:attr(data-file);font-size:.8rem;opacity:.55;padding:.5rem;text-align:center}
-.slot img,.slot video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;background:var(--slot)}
-.r45{aspect-ratio:4/5}.r11{aspect-ratio:1}.r916{aspect-ratio:9/16}.r32{aspect-ratio:3/2}
-.work,.block{padding:clamp(2.5rem,7vw,6rem) 0;border-top:1px solid var(--rule)}
-.head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.4rem 1.5rem;margin-bottom:1.5rem}
-.plate{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(.75rem,2vw,1.5rem);align-items:start}
-.plate>*{min-width:0}
-.note{font-size:.9rem;opacity:.75;margin-top:1rem;max-width:46rem}
-figcaption{font-size:.85rem;opacity:.75;margin-top:.4rem}
-.row{display:grid;grid-template-columns:1.3fr 1fr 11rem;gap:1.5rem;align-items:center;padding:1.5rem 0;border-top:1px solid var(--rule)}
-.term{font-size:clamp(1.8rem,4.2vw,3.6rem)}
-.hook{color:var(--stamp);font-weight:600;margin-top:.5rem}
-ol.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;list-style:none;padding:0;margin-top:1.5rem}
-ol.steps li{border-top:1px solid var(--ink);padding-top:.75rem;max-width:22rem}
-footer{border-top:1px solid var(--rule);padding:clamp(2.5rem,7vw,6rem) 0 2rem}
-.mail{font-size:clamp(1.8rem,6vw,5rem);font-weight:600;font-variation-settings:"wdth" 80,"opsz" 96;letter-spacing:-.025em}
-@media(max-width:760px){
-.hero h1,.lede,.cta{grid-column:1/-1}
-.hero .slot{grid-column:1/-1;grid-row:auto;max-width:22rem}
-.plate{grid-template-columns:1fr 1fr}
-.plate>*{grid-column:auto!important}
-.plate>.wide{grid-column:1/-1!important}
-.row{grid-template-columns:1fr}.row .slot{max-width:11rem}
-ol.steps{grid-template-columns:1fr}}
+:root {
+    --paper: #ECEEEB;
+    --ink: #131A2B;
+    --stamp: #2B35D6;
+    --slot: #DADED9;
+    --rule: rgba(19, 26, 43, .22)
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0
+}
+
+html {
+    background: var(--paper);
+    color: var(--ink)
+}
+
+body {
+    font: 400 1.05rem/1.55 "Bricolage Grotesque", system-ui, sans-serif;
+    padding: 0 clamp(1rem, 4vw, 3rem)
+}
+
+a {
+    color: inherit;
+    text-underline-offset: .2em;
+    text-decoration-thickness: 1px
+}
+
+a:hover {
+    color: var(--stamp)
+}
+
+:focus-visible {
+    outline: 2px solid var(--stamp);
+    outline-offset: 3px
+}
+
+.wrap {
+    max-width: 84rem;
+    margin: 0 auto
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--rule)
+}
+
+.mark {
+    font-weight: 700;
+    font-size: 1.15rem;
+    text-decoration: none
+}
+
+nav {
+    display: flex;
+    gap: 1.5rem
+}
+
+h1,
+h2,
+.term {
+    font-weight: 600;
+    font-variation-settings: "wdth" 80, "opsz" 96;
+    letter-spacing: -.025em;
+    line-height: .98
+}
+
+h1 {
+    font-size: clamp(2.6rem, 7.4vw, 6.4rem)
+}
+
+h2 {
+    font-size: clamp(2rem, 4.6vw, 3.6rem)
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: clamp(1rem, 2vw, 2rem);
+    padding: clamp(2rem, 6vw, 5rem) 0
+}
+
+.hero h1 {
+    grid-column: 1/9
+}
+
+.lede {
+    grid-column: 1/7;
+    font-size: 1.25rem;
+    max-width: 34rem;
+    margin-top: 1rem
+}
+
+.cta {
+    grid-column: 1/7;
+    font-size: 1.1rem
+}
+
+.samples {
+    grid-column: 9/13;
+    grid-row: 1/4;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .75rem;
+    align-content: start;
+    animation: wipe 1.1s cubic-bezier(.7, 0, .2, 1) both
+}
+
+.samples .big,
+.samples .note {
+    grid-column: 1/-1
+}
+
+.samples .note {
+    margin-top: .1rem
+}
+
+@keyframes wipe {
+    from {
+        clip-path: inset(0 0 100% 0)
+    }
+
+    to {
+        clip-path: inset(0)
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    .samples {
+        animation: none
+    }
+}
+
+.slot {
+    position: relative;
+    background: var(--slot);
+    overflow: hidden;
+    display: grid;
+    place-items: center
+}
+
+.slot::after {
+    content: attr(data-file);
+    font-size: .8rem;
+    opacity: .55;
+    padding: .5rem;
+    text-align: center
+}
+
+.slot img,
+.slot video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    background: var(--slot)
+}
+
+.r45 {
+    aspect-ratio: 4/5
+}
+
+.r11 {
+    aspect-ratio: 1
+}
+
+.r916 {
+    aspect-ratio: 9/16
+}
+
+.r32 {
+    aspect-ratio: 3/2
+}
+
+.work,
+.block {
+    padding: clamp(2.5rem, 7vw, 6rem) 0;
+    border-top: 1px solid var(--rule)
+}
+
+.head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: .4rem 1.5rem;
+    margin-bottom: 1.5rem
+}
+
+.plate {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: clamp(.75rem, 2vw, 1.5rem);
+    align-items: start
+}
+
+.plate>* {
+    min-width: 0
+}
+
+.note {
+    font-size: .9rem;
+    opacity: .75;
+    margin-top: 1rem;
+    max-width: 46rem
+}
+
+figcaption {
+    font-size: .85rem;
+    opacity: .75;
+    margin-top: .4rem
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 11rem;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--rule)
+}
+
+.cols {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 11rem;
+    gap: 1.5rem;
+    font-size: .85rem;
+    opacity: .7;
+    padding-top: 1.5rem
+}
+
+.term {
+    font-size: clamp(1.8rem, 4.2vw, 3.6rem)
+}
+
+.hook {
+    color: var(--stamp);
+    font-weight: 600;
+    margin-top: .5rem
+}
+
+ol.steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem
+}
+
+ol.steps li {
+    border-top: 1px solid var(--ink);
+    padding-top: .75rem;
+    max-width: 22rem
+}
+
+footer {
+    border-top: 1px solid var(--rule);
+    padding: clamp(2.5rem, 7vw, 6rem) 0 2rem
+}
+
+.mail {
+    font-size: clamp(1.8rem, 6vw, 5rem);
+    font-weight: 600;
+    font-variation-settings: "wdth" 80, "opsz" 96;
+    letter-spacing: -.025em
+}
+
+@media(max-width:760px) {
+
+    .hero h1,
+    .lede,
+    .cta {
+        grid-column: 1/-1
+    }
+
+    .samples {
+        grid-column: 1/-1;
+        grid-row: auto;
+        max-width: 26rem
+    }
+
+    .cols {
+        display: none !important
+    }
+
+    .plate {
+        grid-template-columns: 1fr 1fr
+    }
+
+    .plate>* {
+        grid-column: auto !important
+    }
+
+    .plate>.wide {
+        grid-column: 1/-1 !important
+    }
+
+    .row {
+        grid-template-columns: 1fr
+    }
+
+    .row .slot {
+        max-width: 11rem
+    }
+
+    ol.steps {
+        grid-template-columns: 1fr
+    }
+}
